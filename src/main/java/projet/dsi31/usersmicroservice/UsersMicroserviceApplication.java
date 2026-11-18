@@ -20,24 +20,24 @@ public class UsersMicroserviceApplication {
         SpringApplication.run(UsersMicroserviceApplication.class, args);
     }
 
-    /*
     @PostConstruct
     void init_users() {
-        // Add roles
-        userService.addRole(new Role(null, "ADMIN"));
-        userService.addRole(new Role(null, "USER"));
+        if (userService.findUserByUsername("admin") == null) {
+            // Add roles
+            userService.addRole(new Role(null, "ADMIN"));
+            userService.addRole(new Role(null, "USER"));
 
-        // Add users
-        userService.saveUser(new User(null, "admin", "123", true, "admin@gmail.com", null));
-        userService.saveUser(new User(null, "nissaf", "123", true, "nissaf@gmail.com", null));
-        userService.saveUser(new User(null, "yassine", "123", true, "yassine@gmail.com", null));
+            // Add users
+            userService.saveUser(new User(null, "admin", "123", true, "admin@gmail.com", null));
+            userService.saveUser(new User(null, "nissaf", "123", true, "nissaf@gmail.com", null));
+            userService.saveUser(new User(null, "yassine", "123", true, "yassine@gmail.com", null));
 
-        // Add roles to users
-        userService.addRoleToUser("admin", "ADMIN");
-        userService.addRoleToUser("admin", "USER");
-        userService.addRoleToUser("nadhem", "USER");
-        userService.addRoleToUser("yassine", "USER");
+            // Add roles to users
+            userService.addRoleToUser("admin", "ADMIN");
+            userService.addRoleToUser("admin", "USER");
+            userService.addRoleToUser("nissaf", "USER");
+            userService.addRoleToUser("yassine", "USER");
+        }
     }
-    */
 
 }

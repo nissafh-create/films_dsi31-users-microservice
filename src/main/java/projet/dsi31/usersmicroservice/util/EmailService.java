@@ -23,8 +23,8 @@ public class EmailService implements EmailSender {
             helper.setSubject("Confirm your email");
             helper.setFrom("nadhem.belhadj.abdallah@gmail.com");
             mailSender.send(mimeMessage);
-        } catch (MessagingException e) {
-            throw new IllegalStateException("failed to send email");
+        } catch (Exception e) {
+            System.err.println("Email sending failed (SMTP not configured or unreachable): " + e.getMessage());
         }
     }
 }
