@@ -98,17 +98,10 @@ public class UserServiceImpl implements UserService {
         VerificationToken token = new VerificationToken(code, newUser);
         verificationTokenRepo.save(token);
 
-        System.out.println("\n=======================================================");
-        System.out.println(">>> VERIFICATION CODE FOR " + newUser.getUsername() + " (" + newUser.getEmail() + "): " + code);
-        System.out.println("=======================================================\n");
+        System.out.println(
+                ">>> VERIFICATION CODE FOR " + newUser.getUsername() + " (" + newUser.getEmail() + "): " + code);
 
-        // Send email to validate user email (safe: won't freeze registration if SMTP fails)
-        try {
-            sendEmailUser(newUser, token.getToken());
-        } catch (Exception e) {
-            System.err.println("SMTP delivery failed: " + e.getMessage());
-        }
-
+        sendEmailUser(newUser, code);
         return newUser;
     }
 
@@ -142,4 +135,3 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 }
-

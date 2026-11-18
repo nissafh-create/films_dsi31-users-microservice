@@ -17,15 +17,16 @@ public class EmailService implements EmailSender {
     public void sendEmail(String to, String email) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
             helper.setText(email, true);
             helper.setTo(to);
             helper.setSubject("Confirm your email");
-            helper.setFrom("nadhem.belhadj.abdallah@gmail.com");
+            helper.setFrom("nissafhassad13@gmail.com");
             mailSender.send(mimeMessage);
+            System.out.println(">>> [EMAIL SERVICE] Email successfully sent to " + to);
         } catch (Exception e) {
-            System.err.println("Email sending failed (SMTP not configured or unreachable): " + e.getMessage());
+            System.err.println(">>> [EMAIL SERVICE ERROR] Email sending failed: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
-
